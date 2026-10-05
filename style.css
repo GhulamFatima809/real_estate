@@ -12,7 +12,7 @@ html, body {
 }
  
 body {
-    font-family: "Geist", sans-serif;
+    font-family: "Urbanist", sans-serif;
     font-size: var(--text-base);
     font-weight: var(--weight-regular);
     background-color: var(--background);
@@ -69,7 +69,7 @@ img {
     /* brand colors */
     --primary-color: #703bf7;
     --accent-color: #8a5bfa;
-    --navy-color: #17171f;      
+    --navy-color: #141414;      
     --main-color: #1b1b1b;     
     --text-color: #b8b8b8;  
     --text-muted: #9a9aa8;
@@ -82,9 +82,9 @@ img {
     --background: #0a0a0a;     
  
     /* font family */
-    --font-main: "Geist", sans-serif;
+    --font-main: "Urbanist", sans-serif;
     --font-heading: "Urbanist", sans-serif;
-    --font-body: "Geist", sans-serif;
+    --font-body: "Urbanist", sans-serif;
 }
  
 h1 {
@@ -204,6 +204,22 @@ button:focus-visible {
     border-bottom: 1px solid #262626;
     position: relative;
 }
+.announce-abstract {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.announce-icon,
+.announce-text,
+.announce-link {
+    position: relative;
+    z-index: 1;
+}
 
 .announce-text {
     font-size: var(--text-sm);
@@ -242,8 +258,13 @@ button:focus-visible {
 }
  
 .hero {
-    background-color: var(--background);
-    padding-inline: var(--space-6);
+    background-color: #141414;
+    padding: 0;
+}
+
+.hero .container {
+    max-width: none;
+    padding-inline: 0;
 }
  
 .header-nav {
@@ -313,6 +334,18 @@ button:focus-visible {
 .header-links a:hover,
 .header-links a:focus-visible {
     color: var(--primary-color);
+}
+.header-links a.active {
+    padding: 14px 24px;
+    background-color: #141414;
+    border: 1px solid #262626;
+    border-radius: 8px;
+}
+
+.header .header-cta {
+    padding: 14px 24px;
+    background-color: #141414;
+    font-size: 16px;
 }
  
 .header-cta {
@@ -385,7 +418,7 @@ button:focus-visible {
 .hero-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: start;
+    align-items: center;
     gap: var(--space-8);
     position: relative;
 }
@@ -417,6 +450,12 @@ button:focus-visible {
     flex-direction: column;
     gap: 50px;
     justify-content: flex-start;
+    
+}
+@media (min-width: 901px) {
+    .hero-content {
+        padding-left: 80px;
+    }
 }
 .hero-text {
     display: flex;
@@ -452,14 +491,19 @@ button:focus-visible {
     z-index: 3;
     top: 34px;
     left: calc(50% + (var(--space-8) / 2));
-    width: 105px;
-    height: 105px;
+    width: 128px;
+    height: 128px;
+}
+.orbit-badge img {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 @media (min-width: 901px) {
     .orbit-badge {
         left: calc(50% + (var(--space-8) / 2));
-        top: 50%;
-        transform: translate(-50%, -50%);
+        top: 120px;
+        transform: translateX(-50%);
     }
 }
 .orbit-badge .textring {
@@ -506,7 +550,17 @@ button:focus-visible {
     object-fit: cover;
     filter: saturate(1.15) brightness(0.85);
 }
-
+.hero-dashboard .hero-abstract {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: none;
+    pointer-events: none;
+    z-index: 1;
+}
 @media (max-width: 900px) {
     .hero-dashboard { height: 320px; }
 }
@@ -522,28 +576,28 @@ button:focus-visible {
     padding: 14px 20px;
     border-radius: 8px;
     border: 1px solid #262626; 
-    font-family: var(--font-main);
-    font-size: var(--text-base);
-    font-weight: var(--weight-semibold);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
  
-.btn-primary {
-    border: none;
+.hero-buttons .btn-primary {
+    border: 1px solid var(--primary-color);
     background-color: var(--primary-color);
     color: var(--white);
-    box-shadow: 0 4px 12px rgba(112, 59, 247, 0.35);
 }
  
 .btn-primary:hover {
     transform: translateY(-2px);
 }
  
-.btn-secondary {
-    background-color: transparent;
+.hero-buttons .btn-secondary {
+    background-color: #141414;
     color: var(--white);
-    border: 2px solid var(--border-color);
+    border: 1px solid #262626;
 }
  
 .btn-secondary:hover {
@@ -582,10 +636,10 @@ button:focus-visible {
     color: var(--text-muted);
 }
  
-.stat:hover {
+/* .stat:hover {
     transform: translateY(-4px);
     border-color: var(--primary-color);
-}
+} */
  
 @media (max-width: 560px) {
     .hero-stats {
@@ -596,7 +650,11 @@ button:focus-visible {
 /* truted by */
 .trusted-section {
     background-color: var(--background);
-    padding: var(--space-9) var(--space-6) var(--space-9);
+    padding: 0;
+}
+.trusted-section .container {
+    max-width: none;
+    padding-inline: 0;
 }
 
  
@@ -673,6 +731,10 @@ button:focus-visible {
     color: var(--text-muted);
     font-size: 16px;
 }
+.logo-arrow img {
+    width: 26px;
+    height: 26px;
+}
  
 .logo-label {
     font-family: var(--font-heading);
@@ -687,7 +749,7 @@ button:focus-visible {
 /* FAQ(services) */
 .service-section {
     background-color: var(--navy-color);
-    padding: var(--space-9) var(--space-6);
+    padding: 60px var(--space-6) 72px;
 }
  
 .service-container {
@@ -705,31 +767,18 @@ button:focus-visible {
     min-width: 260px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: 24px;
     position: relative;
     overflow: hidden;
     align-items: flex-start;
     text-align: left;
-    padding: var(--space-6) var(--space-5);
-    border-radius: var(--radius-xl);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: 0.3s;
+    padding: 40px;
+    border-radius: 10px;
+    background: #141414;
+    border: 1px solid #262626;
 }
  
-.service-card::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(112, 59, 247, 0.14), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-}
+
  
 .service-card > * {
     position: relative;
@@ -740,21 +789,24 @@ button:focus-visible {
 
  
 .service-card h3 {
-    font-family: var(--font-body);
-    font-size: var(--heading-sm);
-    font-weight: var(--weight-semibold);
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
     color: var(--white);
-    margin-bottom: var(--space-2);
+    min-height: 60px;
 }
  
 .service-card p {
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
     color: #999999;
-    letter-spacing: -0.1px;
 }
  
 .service-link {
+    font-family: var(--font-heading);
     color: var(--white);
     text-decoration: none;
     font-weight: var(--weight-medium);
@@ -793,7 +845,7 @@ button:focus-visible {
 .projects {
     background: var(--navy-color);
     max-width: 100%;
-    padding: var(--space-9) var(--space-6);
+    padding: 120px var(--space-6) 60px;
 }
  
 .projects-container {
@@ -820,6 +872,7 @@ button:focus-visible {
 .project-img-wrapper {
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 }
  
 .project-img-wrapper::after {
@@ -834,11 +887,11 @@ button:focus-visible {
  
 
  
-.project-card:hover {
+/* .project-card:hover {
     transform: translateY(-4px);
     border-color: rgba(138, 91, 250, 0.3);
     box-shadow: 0 20px 40px rgba(112, 59, 247, 0.15);
-}
+} */
  
 .projects h2 {
     color: var(--white);
@@ -846,6 +899,7 @@ button:focus-visible {
  
 .project-img {
     width: 100%;
+    
     aspect-ratio: 16 / 10;
     object-fit: cover;
     filter: saturate(1.1) brightness(0.9) contrast(1.05);
@@ -861,7 +915,7 @@ button:focus-visible {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: var(--space-3);
+    margin-bottom: 20px;
 }
 
 .tag-pill {
@@ -878,9 +932,14 @@ button:focus-visible {
     padding: 6px 14px;
 }
 
-.tag-pill i {
+/* .tag-pill i {
     color: var(--primary-color);
     font-size: 13px;
+} */
+.tag-pill img {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
  
 .project-title {
@@ -893,7 +952,7 @@ button:focus-visible {
  
 
 .price-block {
-    margin-bottom: var(--space-4);
+    margin-bottom: 0;
 }
 
 .price-label {
@@ -916,7 +975,7 @@ button:focus-visible {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    flex: 1;
     padding: 14px 20px;
     background-color: var(--primary-color);
     color: var(--white);
@@ -930,7 +989,26 @@ button:focus-visible {
 .project-link-btn:hover {
     transform: translateY(-2px);
 }
- 
+ .project-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: #999999;
+    margin-bottom: 16px;
+}
+
+.read-more {
+    color: var(--white);
+    text-decoration: underline;
+    font-weight: var(--weight-medium);
+}
+
+.project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
 
 .pager {
     display: flex;
@@ -947,7 +1025,16 @@ button:focus-visible {
     font-family: var(--font-heading);
     font-weight: 500;
     font-size: 16px;
+    color: #999999;
+}
+
+.pager .count .current {
     color: var(--white);
+}
+
+.pager .arrows button:first-child {
+    background-color: transparent;
+    color: #808080;
 }
 .pager .arrows {
     display: flex;
@@ -980,7 +1067,7 @@ button:focus-visible {
 /* ===== TESTIMONIALS ===== */
 .testimonials {
     background: var(--navy-color);
-    padding: var(--space-9) var(--space-6);
+    padding: 60px var(--space-6);
 }
  
 .testimonials h2 {
@@ -1034,6 +1121,14 @@ button:focus-visible {
     color: rgba(255, 255, 255, 0.75);
     margin-bottom: var(--space-5);
 }
+.testimonial-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--white);
+    margin-bottom: -18px;
+}
  
 .testimonial-author {
     display: flex;
@@ -1063,15 +1158,15 @@ button:focus-visible {
     object-fit: cover;
 }
  
-.testimonial-card:hover,
+/* .testimonial-card:hover,
 .testimonial-card:focus-within {
     transform: translateY(-8px);
-}
+} */
  
 /* cta */
 .cta {
     background: var(--navy-color);
-    padding: 80px 80px;
+    padding: 60px 80px;
     border-top: 1px solid #262626;
     border-bottom: 1px solid #262626;
     position: relative;
@@ -1103,6 +1198,11 @@ button:focus-visible {
     position: relative;
     z-index: 1;
     margin-bottom: 0;
+}
+@media (min-width: 701px) {
+    .cta .section-head {
+        align-items: center;
+    }
 }
  
 .cta h2 {
@@ -1172,18 +1272,20 @@ button:focus-visible {
 .subscribe {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+    gap: 10px;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    height: 56px;
+    padding: 0 20px;
     margin-top: var(--space-3);
-    max-width: 270px;
+    max-width: 326px;
     width: 100%;
 }
  
-.subscribe .env {
-    color: var(--text-muted);
-    font-size: var(--text-sm);
+.subscribe-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
 }
  
 .subscribe input {
@@ -1192,21 +1294,30 @@ button:focus-visible {
     border: none;
     outline: none;
     color: var(--white);
-    font-size: var(--text-sm);
-    font-family: var(--font-body);
+    font-size: 14px;
+    font-family: var(--font-heading);
+    min-width: 0;
+}
+.subscribe input::placeholder {
+    color: #999999;
 }
  
 .subscribe button {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
     border: none;
-    border-radius: var(--radius-sm);
-    background: var(--primary-color);
-    color: var(--white);
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--text-sm);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.subscribe button img {
+    width: 24px;
+    height: 24px;
 }
  
 .footer-links,
@@ -1295,6 +1406,7 @@ button:focus-visible {
 }
  
 .footer-social-icons a {
+    text-decoration: none;
     width: 40px;
     height: 40px;
     border-radius: 50%;
