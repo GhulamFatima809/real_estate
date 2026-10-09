@@ -1032,7 +1032,7 @@ button:focus-visible {
     color: var(--white);
 }
 
-.pager .arrows button:first-child {
+.pager .arrows button.is-disabled {
     background-color: transparent;
     color: #808080;
 }
@@ -1064,7 +1064,7 @@ button:focus-visible {
     }
 }
  
-/* ===== TESTIMONIALS ===== */
+/* TESTIMONIALS */
 .testimonials {
     background: var(--navy-color);
     padding: 60px var(--space-6);
@@ -1457,4 +1457,24 @@ button:focus-visible {
         grid-template-columns: 1fr;
     }
 }
- 
+.owl-carousel .owl-stage {
+    display: flex;
+}
+
+.owl-carousel .owl-item {
+    display: flex;
+}
+
+.owl-carousel .owl-item > div {
+    width: 100%;
+}
+
+.owl-carousel .owl-item .testimonial-card img {
+    width: 50px;
+    height: 50px;
+}
+
+.owl-carousel .owl-item .tag-pill img {
+    width: 16px;
+    height: 16px;
+}

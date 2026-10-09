@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estatein — Discover Your Dream Property</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,7 +62,7 @@
                                 <div class="stat"><h2>16+</h2><p>Years of Experience</p></div>
                             </div>
                         </div>
-                        <!--rotating badge  -->
+                        <!--badge-->
                         <div class="orbit-badge">
                             <img src="./images/badge.png" alt="">
                         </div>
@@ -110,7 +111,7 @@
                 </div>
                 <a href="#" class="header-cta">View All Properties</a>
             </div>
-            <div class="projects-container">
+            <div class="projects-container owl-carousel">
             <div class="project-card">
                 <div class="project-img-wrapper">
                 <img src="./images/Image2.png" alt="Seaside Villa" class="project-img">
@@ -198,7 +199,7 @@
                 </div>
                 <a href="#" class="header-cta">View All Testimonials</a>
             </div>
-            <div class="testimonial-container">
+            <div class="testimonial-container owl-carousel">
             <div class="testimonial-card">
                 <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                 <h3 class="testimonial-title">Exceptional Service!</h3>
@@ -256,7 +257,7 @@
                 </div>
                 <a href="#" class="header-cta">View All FAQ's</a>
             </div>
-            <div class="service-container">
+            <div class="service-container owl-carousel">
             <div class="service-card">
             <h3>How do I search for properties on Estatein?</h3>
             <p>Learn how to use our user-friendly search tools to find properties that match your criteria.</p>
@@ -359,5 +360,47 @@
     </div>
 </footer>
 <script>lucide.createIcons();</script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+$(function () {
+    $('.owl-carousel').each(function () {
+        var $carousel = $(this);
+        var $section = $carousel.closest('section');
+        var $count = $section.find('.pager .current');
+        var $prev = $section.find('.pager .arrows button').eq(0);
+        var $next = $section.find('.pager .arrows button').eq(1);
+
+        function update(e) {
+            var index = e.item ? e.item.index : 0;
+            var count = e.item ? e.item.count : 0;
+            var size = e.page ? e.page.size : 1;
+            $count.text(String(index + 1).padStart(2, '0'));
+            $prev.toggleClass('is-disabled', index <= 0);
+            $next.toggleClass('is-disabled', index >= count - size);
+        }
+
+        $carousel.on('initialized.owl.carousel changed.owl.carousel', update);
+
+        $carousel.owlCarousel({
+            items: 3,
+            margin: 20,
+            nav: false,
+            dots: false,
+            mouseDrag: true,
+            touchDrag: true,
+            smartSpeed: 500,
+            responsive: {
+                0:   { items: 1 },
+                600: { items: 2 },
+                992: { items: 3 }
+            }
+        });
+
+        $prev.on('click', function () { $carousel.trigger('prev.owl.carousel'); });
+        $next.on('click', function () { $carousel.trigger('next.owl.carousel'); });
+    });
+});
+</script>
 </body>
 </html>
